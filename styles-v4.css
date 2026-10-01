@@ -1,0 +1,156 @@
+/* Bright, service-led visual direction using the partner's authorized brand palette. */
+:root {
+  --ink: #182331;
+  --ink-2: #344456;
+  --blue: #0057b8;
+  --lime: #0057b8;
+  --lime-dark: #00499c;
+  --paper: #f4f7fb;
+  --line: #dce4ee;
+}
+
+body { color: #182331; background: #fff; }
+.announcement { background: #07366f; color: #fff; border: 0; min-height: 36px; letter-spacing: -.01em; }
+.announcement span { color: #80bcff; }
+.site-header { min-height: 82px; box-shadow: 0 3px 14px #092d5610; }
+.brand { gap: 12px; }
+.brand-mark { display: block; width: 105px; height: 24px; object-fit: contain; }
+.brand-copy strong { color: #202a36; font-size: 18px; letter-spacing: -.045em; }
+.brand-copy small { color: #627286; font-size: 10px; }
+.desktop-nav a { color: #283647; font-weight: 600; }
+.desktop-nav a:hover { color: #0057b8; }
+.header-cta { background: #0057b8; border: 1px solid #0057b8; border-radius: 3px; min-height: 46px; padding-inline: 21px; }
+.header-cta:hover { background: #00499c; }
+
+.hero { min-height: 620px; padding: 72px max(7.5vw, 38px) 70px; background: #edf4fb; color: #182331; }
+.hero:before { background: linear-gradient(112deg,#f2f7fc 0%,#eaf2fb 50%,#dceafa 100%); }
+.hero:after { display: none; }
+.hero-grid { display: block; inset: 0 0 0 45%; opacity: .42; background-image: linear-gradient(#ffffff75 1px,transparent 1px),linear-gradient(90deg,#ffffff75 1px,transparent 1px); background-size: 48px 48px; mask-image: linear-gradient(90deg,transparent,#000 35%); }
+.hero-content { max-width: 640px; flex-basis: 52%; padding-bottom: 22px; }
+.hero .eyebrow { color: #0057b8; font-size: 11px; font-weight: 800; letter-spacing: .15em; }
+.hero .eyebrow-line { background: #0057b8; }
+.hero h1 { color: #172432; font-size: clamp(42px,4.5vw,62px); line-height: 1.2; letter-spacing: -.075em; margin: 24px 0 19px; }
+.hero h1 span { color: #0057b8; }
+.hero-lede { color: #4c5e71; font-size: 16px; }
+.hero-actions { margin-top: 32px; }
+.hero .button-lime { background: #0057b8; color: #fff; border-radius: 3px; box-shadow: 0 9px 24px #0057b82b; }
+.hero .button-lime:hover { background: #00499c; }
+.hero .text-link { color: #25384d; }
+.hero-proof { color: #53677a; }
+.shield-icon { background: #d7eaff; color: #0057b8; }
+.hero-art { min-width: 360px; min-height: 430px; }
+.orbit { border-color: #0057b822; }
+.orbit-two { border-color: #0057b812; }
+.camera-card { background: #fff; border: 1px solid #d7e2ee; border-radius: 8px; box-shadow: 0 28px 80px #163b631c; transform: rotate(-2deg); }
+.camera-top,.camera-bottom { color: #26394d; }
+.camera-time { color: #8190a0; }
+.camera-scene { background: linear-gradient(140deg,#d4e4f4,#b9d0e7 55%,#91b3d3); }
+.camera-scene:before { background-image: linear-gradient(90deg,transparent 49.5%,#fff7 50%,transparent 50.5%),linear-gradient(0deg,transparent 64%,#fff7 64.5%,transparent 65%); }
+.scene-window { background: linear-gradient(145deg,#f4f8fc 0 42%,#95b8d8 43% 48%,#dce9f5 49%); border-color: #607d99; }
+.scene-counter { background: #987b60; border-top-color: #c1a17f; }
+.scene-plant i { background: #7aab8e; }
+.scan-line { background: #1771cf9c; box-shadow: 0 0 16px #1771cf; }
+.rec-tag { background: #092e5bc9; }
+.corner { border-color: #1672ce; }
+.signal i { background: #1672ce; }
+.floating-chip { border-radius: 5px; box-shadow: 0 16px 42px #123d681c; }
+.chip-top { background: #fff; color: #20364b; }
+.chip-bottom { background: #0057b8; color: #fff; }
+.chip-icon { color: #0057b8; }
+.chip-lime { background: #ffffff2e; color: #fff; }
+.hero-number { color: #263b50; }
+.hero-number span { color: #8294a7; }
+.hero-bottom { border-color: #173d641f; color: #718296; padding-inline: max(7.5vw,38px); }
+.hero-bottom a { color: #273b50; }
+.hero-bottom a span { color: #0057b8; }
+
+.partner-note { background: #f4f8fc; border-bottom: 1px solid #e2eaf3; }
+.partner-note-mark { background: #dcecff; color: #0057b8; border-radius: 2px; }
+.partner-note p strong { color: #1b2b3c; }
+.partner-note p span { color: #596c80; }
+.partner-note>a { color: #0057b8; }
+.service-range { background: #fff; }
+.section-kicker { color: #3974b1; }
+.service-range-grid { border-color: #d9e2ed; }
+.service-tile { border-color: #d9e2ed; }
+.service-tile:hover { background: #f3f8fe; box-shadow: 0 10px 28px #10396312; }
+.tile-icon { background: #e7f1fc; color: #0057b8; }
+.tile-arrow { color: #0057b8; }
+.intro { background: #f4f7fb; }
+.intro h2 span,.section-head h2 span,.inquiry h2 span { color: #0057b8; }
+.value-list article { border-color: #dce4ed; }
+.value-index,.value-symbol { color: #5481b0; }
+.solutions { background: #fff; }
+.space-card { background: #f3f7fb; border: 1px solid #e1e8f0; border-radius: 4px; }
+.space-card:hover,.space-card.selected { border-color: #83b2e5; box-shadow: 0 14px 34px #12385b18; }
+.space-info b { color: #0057b8; }
+.process { background: #07366f; color: #fff; }
+.process .section-kicker { color: #aad2ff; }
+.process h2 span { color: #75b8ff; }
+.process-heading p,.process-steps p { color: #cfdef0; }
+.process-steps article { border-color: #ffffff30; }
+.process-steps article:nth-child(odd) { border-right-color: #ffffff30; }
+.process-steps article>span { color: #b7cee7; }
+.step-icon { color: #80bdff; border-color: #ffffff50; background: #ffffff12; }
+.button-dark { background: #fff; border-color: #fff; color: #07366f; border-radius: 3px; }
+.button-dark:hover { background: #e6f2ff; color: #07366f; }
+.inquiry { background: #f1f6fc; }
+.inquiry .section-kicker { color: #3974b1; }
+.inquiry-form { border: 1px solid #dce5ef; border-radius: 5px; box-shadow: 0 20px 55px #102c3b12; }
+.input-field input:focus,.input-field select:focus,.input-field textarea:focus { border-color: #287bc9; outline-color: #c5e0fb; }
+.choice-row input:checked+span { background: #e6f2ff; border-color: #4c94d9; color: #064d94; }
+.contact-option-icon { background: #e5f1fd; color: #0057b8; }
+.site-footer { background: #11253b; }
+.footer-brand .brand-mark { background: #fff; color: #0057b8; }
+.footer-affiliation { color: #aed1f5; }
+.mobile-cta a { background: #0057b8; }
+
+@media (max-width: 900px) {
+  .hero { padding: 64px 32px 58px; }
+  .hero-art { min-width: 320px; }
+  .hero-bottom { padding-inline: 32px; }
+}
+@media (max-width: 720px) {
+  .site-header { min-height: 70px; }
+  .brand-mark { width: 94px; height: 22px; }
+  .hero { min-height: auto; padding: 54px 22px 32px; }
+  .hero:before { background: linear-gradient(145deg,#f6f9fd,#e7f1fc); }
+  .hero-content { padding-right: 0; }
+  .hero h1 { font-size: clamp(37px,10vw,52px); }
+  .hero-lede { font-size: 14px; }
+  .hero-art { min-width: 0; min-height: 330px; margin-top: 20px; }
+  .camera-card { width: min(100%,410px); }
+  .hero-bottom { padding-inline: 22px; }
+  .partner-note { align-items: flex-start; }
+  .partner-note>a { display: none; }
+}
+
+/* Photo-led hero direction, informed by the reference site's full-width visual. */
+.hero { display: block; position: relative; min-height: 610px; padding: 108px max(7.5vw,38px) 72px; background: #071b34; color: #fff; }
+.hero:before { background: linear-gradient(90deg,rgba(4,22,45,.96) 0%,rgba(4,26,52,.86) 40%,rgba(4,26,52,.28) 100%),url("assets/hero-cafe-security.webp") center 52%/cover no-repeat; }
+.hero-grid { display: none; }
+.hero-content { max-width: 740px; padding: 0; }
+.hero .eyebrow { color: #8ec7ff; }
+.hero .eyebrow-line { background: #8ec7ff; }
+.hero h1 { color: #fff; max-width: 730px; font-size: clamp(44px,5.1vw,70px); }
+.hero h1 span { color: #a4d2ff; }
+.hero-lede,.hero-proof { color: #e0eaf4; }
+.hero .button-lime { background: #0057b8; color: #fff; box-shadow: 0 10px 28px #00173355; }
+.hero .button-lime:hover { background: #0e6dce; }
+.hero .text-link { color: #fff; }
+.shield-icon { background: #fff; color: #0057b8; }
+.hero-art { display: none; }
+.hero-bottom { position: absolute; inset: auto 0 0; background: linear-gradient(90deg,#04162ddd,#04162d88); border-color: #ffffff30; color: #d8e4f1; }
+.hero-bottom a { color: #fff; }
+.hero-bottom a span { color: #a4d2ff; }
+@media (max-width: 900px) {
+  .hero { padding: 92px 32px 76px; }
+}
+@media (max-width: 720px) {
+  .hero { min-height: 565px; padding: 76px 22px 74px; }
+  .hero:before { background: linear-gradient(90deg,rgba(4,22,45,.94),rgba(4,26,52,.54)),url("assets/hero-cafe-security.webp") 58% center/cover no-repeat; }
+  .hero-content { padding: 0; }
+  .hero h1 { font-size: clamp(38px,10vw,54px); }
+  .hero-art { display: none; }
+  .hero-bottom { padding-inline: 22px; }
+}
