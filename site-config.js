@@ -4,6 +4,6 @@ window.CAPS_SITE_CONFIG = Object.freeze({
   businessName: "",
   businessAddress: "",
   representativePhone: "",
-  kakaoOpenChatUrl: "",
+  kakaoOpenChatUrl: "https://open.kakao.com/o/ssYnmhQi",
   formEndpoint: ""
 });
