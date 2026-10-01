@@ -1,9 +1,8 @@
-/* Fill these public business settings after they are confirmed.
-   Never put passwords, bot tokens, or database credentials in this file. */
+/* Public configuration for the CAPS online signup center. */
 window.CAPS_SITE_CONFIG = Object.freeze({
   businessName: "",
   businessAddress: "",
   representativePhone: "",
   kakaoOpenChatUrl: "https://open.kakao.com/o/ssYnmhQi",
-  formEndpoint: ""
+  formEndpoint: "https://script.google.com/macros/s/AKfycbz7sYmVYbWRiiBcvEZeRRSLVPvB_H2cw4pJ1-n4GxtYzOZTZBhgvrJIyHyzareH1LX_/exec"
 });
