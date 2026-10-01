@@ -180,3 +180,17 @@
   .inquiry-form { border-radius: 7px; }
   .site-footer { padding-bottom: 75px; }
 }
+@media (min-width: 681px) and (max-width: 1024px) {
+  .hero { min-height: 600px; padding-inline: 5vw; }
+  .hero-content { flex-basis: 54%; min-width: 0; padding-right: 18px; }
+  .hero h1 { font-size: clamp(34px,3.8vw,48px); line-height: 1.28; }
+  .hero-lede { font-size: 13px; }
+  .hero-art { flex-basis: 46%; min-width: 250px; }
+  .camera-card { width: min(350px,88%); }
+  .floating-chip { padding: 8px 10px; }
+}
+@media (max-width: 680px) {
+  .hero { min-height: 725px; padding-bottom: 300px; }
+  .hero h1 { font-size: clamp(31px,7.4vw,36px); }
+  .hero-lede { max-width: 330px; }
+}
