@@ -83,7 +83,6 @@ let pendingLead = null;
 let pendingTimer = null;
 
 window.addEventListener('message', (event) => {
-  if (event.source !== responseFrame.contentWindow) return;
   if (!/^https:\/\/(script\.google\.com|script\.googleusercontent\.com|[a-z0-9-]+-script\.googleusercontent\.com)$/.test(event.origin)) return;
   const result = event.data;
   if (!pendingLead || !result || result.channel !== 'caps-lead-result' || result.requestId !== pendingLead.requestId) return;
