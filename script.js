@@ -72,7 +72,45 @@ spaceOptions.forEach((card) => {
   });
 });
 
-document.getElementById('inquiry-form').addEventListener('submit', async (event) => {
+const inquiryForm = document.getElementById('inquiry-form');
+const responseFrame = document.createElement('iframe');
+responseFrame.name = 'caps-lead-response';
+responseFrame.title = '상담 접수 처리';
+responseFrame.hidden = true;
+document.body.append(responseFrame);
+
+let pendingLead = null;
+let pendingTimer = null;
+
+window.addEventListener('message', (event) => {
+  if (event.source !== responseFrame.contentWindow) return;
+  if (!/^https:\/\/(script\.google\.com|script\.googleusercontent\.com|[a-z0-9-]+-script\.googleusercontent\.com)$/.test(event.origin)) return;
+  const result = event.data;
+  if (!pendingLead || !result || result.channel !== 'caps-lead-result' || result.requestId !== pendingLead.requestId) return;
+
+  clearTimeout(pendingTimer);
+  const submitButton = inquiryForm.querySelector('[type="submit"]');
+  pendingLead = null;
+  submitButton.disabled = false;
+  if (result.ok !== true) {
+    formStatus('접수에 실패했습니다. 입력 내용을 확인한 뒤 다시 시도해 주세요.', true);
+    return;
+  }
+
+  inquiryForm.reset();
+  spaceOptions.forEach((item) => item.classList.remove('selected'));
+  formStatus(result.alertSent === false
+    ? '상담 내용은 저장됐지만 운영자 알림 전송에 문제가 있습니다. 다시 제출하지 않으셔도 됩니다.'
+    : '상담 요청이 접수되었습니다. 확인 후 연락드리겠습니다.', result.alertSent === false);
+});
+
+function formStatus(message, attention) {
+  const status = document.getElementById('form-status');
+  status.textContent = message;
+  status.classList.toggle('status-attention', Boolean(attention));
+}
+
+inquiryForm.addEventListener('submit', (event) => {
   event.preventDefault();
   const status = document.getElementById('form-status');
   if (!siteConfig.formEndpoint) {
@@ -80,29 +118,55 @@ document.getElementById('inquiry-form').addEventListener('submit', async (event)
     status.classList.add('status-attention');
     return;
   }
+  if (pendingLead) return;
   const submitButton = event.currentTarget.querySelector('[type="submit"]');
-  const payload = Object.fromEntries(new FormData(event.currentTarget).entries());
-  status.textContent = '상담 요청을 보내고 있습니다.';
+  const formData = new FormData(event.currentTarget);
+  const requestId = 'CAPS-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
+  const payload = {
+    requestId,
+    submittedAt: new Date().toISOString(),
+    service: String(formData.get('service') || ''),
+    space: String(formData.get('space') || ''),
+    name: String(formData.get('name') || '').trim(),
+    phone: String(formData.get('phone') || '').trim(),
+    region: String(formData.get('region') || '').trim(),
+    message: String(formData.get('message') || '').trim(),
+    consent: Boolean(inquiryForm.querySelector('input[name="consent"]')?.checked)
+  };
+  pendingLead = payload;
   submitButton.disabled = true;
+  status.textContent = '상담 요청을 보내고 있습니다.';
   try {
-    const response = await fetch(siteConfig.formEndpoint, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify(payload)
+    const endpoint = new URL(siteConfig.formEndpoint);
+    if (endpoint.protocol !== 'https:') throw new Error('invalid endpoint');
+    const transport = document.createElement('form');
+    transport.method = 'POST';
+    transport.action = endpoint.href;
+    transport.target = responseFrame.name;
+    const fields = {
+      payload: JSON.stringify(payload),
+      website: String(formData.get('website') || ''),
+      parentOrigin: window.location.origin === 'null' ? '' : window.location.origin
+    };
+    Object.entries(fields).forEach(([name, value]) => {
+      const input = document.createElement('input');
+      input.type = 'hidden';
+      input.name = name;
+      input.value = value;
+      transport.append(input);
     });
-    if (!response.ok) throw new Error('Request failed');
-    const result = await response.json();
-    if (result.ok !== true) throw new Error('Request was not accepted');
-    event.currentTarget.reset();
-    spaceOptions.forEach((item) => item.classList.remove('selected'));
-    status.textContent = result.alertSent === false
-      ? '상담 내용은 저장됐지만 운영자 알림 전송에 문제가 있습니다. 다시 제출하지 않으셔도 됩니다.'
-      : '상담 요청이 접수되었습니다. 확인 후 연락드리겠습니다.';
-    status.classList.remove('status-attention');
-  } catch {
-    status.textContent = '전송에 실패했습니다. 잠시 뒤 다시 시도하거나 전화 상담을 이용해 주세요.';
-    status.classList.add('status-attention');
-  } finally {
+    document.body.append(transport);
+    transport.submit();
+    transport.remove();
+    pendingTimer = setTimeout(() => {
+      if (!pendingLead || pendingLead.requestId !== requestId) return;
+      pendingLead = null;
+      submitButton.disabled = false;
+      formStatus('접수 확인이 지연되고 있습니다. 중복 제출 전 운영자에게 문의해 주세요.', true);
+    }, 25000);
+  } catch (error) {
+    pendingLead = null;
     submitButton.disabled = false;
+    formStatus('접수 연결에 문제가 있습니다. 잠시 뒤 다시 시도해 주세요.', true);
   }
 });
