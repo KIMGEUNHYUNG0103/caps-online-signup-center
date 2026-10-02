@@ -155,17 +155,17 @@ inquiryForm.addEventListener('submit', (event) => {
   if (pendingLead) return;
   const submitButton = event.currentTarget.querySelector('[type="submit"]');
   const formData = new FormData(event.currentTarget);
-  const requestId = 'CAPS-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
+  const requestId = 'CAPS-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9); const selectedService = String(formData.get('service') || '').trim(); const acceptedServices = new Set(['', 'CCTV', '무인경비', '출입보안', '인터넷 가입']); const serviceForBridge = acceptedServices.has(selectedService) ? selectedService : ''; const customerMessage = String(formData.get('message') || '').trim(); const messageForBridge = serviceForBridge || !selectedService ? customerMessage : [`관심 서비스: ${selectedService}`, customerMessage].filter(Boolean).join(' | ');
   const payload = {
     requestId,
     submittedAt: new Date().toISOString(),
-    service: String(formData.get('service') || ''),
+    service: serviceForBridge,
     space: String(formData.get('space') || '일반 상담'),
     name: String(formData.get('name') || '').trim(),
     phone: String(formData.get('phone') || '').trim(),
     preferredTime: String(formData.get('preferredTime') || ''),
     region: String(formData.get('region') || '').trim(),
-    message: String(formData.get('message') || '').trim(),
+    message: messageForBridge,
     consent: Boolean(inquiryForm.querySelector('input[name="consent"]')?.checked)
   };
   pendingLead = payload;
