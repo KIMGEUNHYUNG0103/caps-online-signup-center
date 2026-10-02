@@ -160,7 +160,7 @@ inquiryForm.addEventListener('submit', (event) => {
     requestId,
     submittedAt: new Date().toISOString(),
     service: String(formData.get('service') || ''),
-    space: String(formData.get('space') || ''),
+    space: String(formData.get('space') || '일반 상담'),
     name: String(formData.get('name') || '').trim(),
     phone: String(formData.get('phone') || '').trim(),
     preferredTime: String(formData.get('preferredTime') || ''),
