@@ -1,0 +1,177 @@
+/* Final readability and alignment pass for the main landing page. */
+body {
+  font-family: Pretendard, "Noto Sans KR", "Malgun Gothic", sans-serif;
+  font-size: 16px;
+  line-height: 1.65;
+  text-rendering: optimizeLegibility;
+  -webkit-text-size-adjust: 100%;
+}
+
+p,
+li,
+.partner-note p span,
+.store-service-card p,
+.space-info small,
+.process-steps p,
+.faq-list details p,
+.footer-disclosure {
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+.hero h1,
+.intro-row h2,
+.section-head h2,
+.process h2,
+.inquiry-heading h2,
+.faq-title h2 {
+  word-break: keep-all;
+  text-wrap: balance;
+}
+
+.announcement { min-height: 36px; font-size: 12px; line-height: 1.45; }
+.brand-copy strong { font-size: 16px; line-height: 1.4; }
+.brand-copy small { font-size: 11px; line-height: 1.5; }
+.hero-lede { font-size: 16px; line-height: 1.8; }
+.hero-proof { font-size: 12px; line-height: 1.5; }
+.hero-bottom { font-size: 10px; line-height: 1.5; }
+.service-tile .tile-copy strong { font-size: 16px; line-height: 1.45; }
+.service-tile .tile-copy small { font-size: 13px; line-height: 1.55; }
+.store-service-card p { font-size: 15px; line-height: 1.75; }
+.store-service-card>a { min-height: 44px; font-size: 14px; }
+.store-service-note { font-size: 13px; line-height: 1.7; }
+.space-info strong { font-size: 16px; line-height: 1.45; }
+.space-info small { font-size: 14px; line-height: 1.65; }
+.space-info b { font-size: 12px; }
+.intro-copy p { font-size: 16px; line-height: 1.8; }
+.arrow-link { min-height: 44px; font-size: 15px; }
+.process-steps article h3 { font-size: 17px; line-height: 1.5; }
+.process-steps article p { font-size: 14px; line-height: 1.75; }
+.faq-list summary { min-height: 52px; font-size: 16px; line-height: 1.55; }
+.faq-list details p { font-size: 14px; line-height: 1.8; }
+.footer-meta { font-size: 13px; line-height: 1.8; }
+.footer-meta small { font-size: 12px; }
+.quick-phone span { font-size: 12px; }
+.quick-kakao strong,
+.quick-booking strong { font-size: 14px; }
+
+/* Let the form and paired contact cards lead the consultation section. */
+.inquiry { padding-top: clamp(28px, 4vw, 52px); }
+.inquiry-contact-cards { align-self: center; }
+.quick-contact.is-inquiry-visible { opacity: 0; visibility: hidden; pointer-events: none; }
+
+/* Match the supplied reference: paired cards and clean, full-width form controls. */
+.inquiry-form {
+  padding: 0;
+  background: transparent;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.inquiry-fields-row { grid-template-columns: minmax(0, 1fr); gap: 12px; }
+.inquiry-fields-row>.consult-input,
+.inquiry-fields-row .time-note-field>select,
+.inquiry-fields-row .time-note-field>textarea {
+  display: block;
+  width: 100%;
+  min-width: 0;
+  min-height: 60px;
+  margin: 0;
+  padding: 14px 16px;
+  color: #21364e;
+  background: #fff;
+  border: 1px solid #d5deea;
+  border-radius: 7px;
+  font-family: inherit;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 1.5;
+}
+
+.inquiry-fields-row>.consult-input::placeholder,
+.inquiry-fields-row .time-note-field>textarea::placeholder { color: #8290a0; opacity: 1; }
+.inquiry-fields-row .time-note-field { display: grid; grid-template-columns: 1fr; gap: 10px; }
+.inquiry-fields-row .time-note-field>textarea { min-height: 76px; resize: vertical; }
+.inquiry-submit-row {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(170px, .48fr);
+  align-items: center;
+  gap: 18px;
+  margin-top: 18px;
+}
+
+.inquiry-submit-row .consent { min-width: 0; margin: 0; font-size: 14px; line-height: 1.6; }
+.inquiry-submit-row .consent input { flex: 0 0 18px; }
+.inquiry-submit-row .submit-button { min-height: 62px; margin: 0; font-size: 18px; }
+.inquiry-form .form-status { margin: 10px 0 0; }
+.inquiry-contact-card { min-height: 330px; padding: 26px 20px; }
+.inquiry-contact-card>div>strong { font-size: 17px; }
+.inquiry-contact-card .inquiry-hours { font-size: clamp(19px, 1.8vw, 25px); }
+.inquiry-contact-card>div>small { font-size: 14px; }
+.inquiry-phone-action,
+.inquiry-kakao-action { min-height: 58px; font-size: 16px; }
+
+@media (max-width: 900px) {
+  .inquiry-contact-card { min-height: 260px; }
+  .inquiry-submit-row { grid-template-columns: minmax(0, 1fr) 170px; gap: 12px; }
+}
+
+@media (max-width: 640px) {
+  .inquiry-contact-card { min-height: 155px; padding: 18px; }
+  .inquiry-submit-row { grid-template-columns: 1fr; gap: 14px; }
+  .inquiry-submit-row .submit-button { width: 100%; }
+  .inquiry-fields-row>.consult-input,
+  .inquiry-fields-row .time-note-field>select,
+  .inquiry-fields-row .time-note-field>textarea { min-height: 54px; font-size: 15px; }
+  .inquiry-fields-row .time-note-field>textarea { min-height: 76px; }
+}
+
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible,
+summary:focus-visible {
+  outline: 3px solid #5b9de1;
+  outline-offset: 3px;
+}
+
+.hero-dots button { position: relative; width: 22px; height: 24px; background: transparent; }
+.hero-dots button::before {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  content: "";
+  background: #ffffffa8;
+  border-radius: 8px;
+  transform: translate(-50%, -50%);
+}
+.hero-dots button.is-active::before { width: 18px; height: 8px; background: #fff; }
+
+@media (max-width: 720px) {
+  .brand-copy small { font-size: 9px; }
+  .hero-lede { font-size: 15px; line-height: 1.75; }
+  .hero-proof { font-size: 11px; }
+  .hero-bottom { font-size: 10px; }
+  .service-tile .tile-copy strong { font-size: 16px; }
+  .service-tile .tile-copy small { font-size: 13px; }
+  .store-service-card p,
+  .space-info small,
+  .process-steps article p { font-size: 14px; }
+  .intro-copy p { font-size: 15px; }
+  .faq-list summary { font-size: 15px; }
+  .quick-phone span { font-size: 11px; }
+  .quick-kakao strong,
+  .quick-booking strong { font-size: 13px; }
+  .site-header .menu-toggle { width: 40px; height: 40px; flex-basis: 40px; }
+  .inquiry { padding-top: 28px; }
+}
+
+@media (max-width: 380px) {
+  .site-header .brand-copy small { display: none; }
+  .hero-bottom { letter-spacing: .06em; }
+  .quick-contact .quick-phone strong { font-size: 11px; }
+}

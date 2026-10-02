@@ -1,5 +1,31 @@
 document.getElementById('year').textContent = new Date().getFullYear();
 
+const heroSlides = [...document.querySelectorAll('.hero-slide')];
+const heroSlideButtons = [...document.querySelectorAll('[data-slide-to]')];
+let activeHeroSlide = 0;
+let heroSlideTimer;
+function setHeroSlide(index) {
+  if (!heroSlides.length) return;
+  activeHeroSlide = (index + heroSlides.length) % heroSlides.length;
+  heroSlides.forEach((slide, i) => slide.classList.toggle('is-active', i === activeHeroSlide));
+  heroSlideButtons.forEach((button, i) => {
+    const active = i === activeHeroSlide;
+    button.classList.toggle('is-active', active);
+    button.setAttribute('aria-pressed', String(active));
+  });
+}
+function restartHeroSlideTimer() {
+  clearInterval(heroSlideTimer);
+  if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches && heroSlides.length > 1) {
+    heroSlideTimer = setInterval(() => setHeroSlide(activeHeroSlide + 1), 6500);
+  }
+}
+heroSlideButtons.forEach((button) => button.addEventListener('click', () => {
+  setHeroSlide(Number(button.dataset.slideTo));
+  restartHeroSlideTimer();
+}));
+restartHeroSlideTimer();
+
 const siteConfig = window.CAPS_SITE_CONFIG || {};
 const phoneLink = document.querySelector('[data-phone-link]');
 const phoneLabel = document.querySelector('[data-phone-label]');
@@ -42,8 +68,10 @@ document.querySelectorAll('[data-business-address]').forEach((element) => {
 });
 
 const spaceOptions = [...document.querySelectorAll('.space-card')];
-const spaceInputs = [...document.querySelectorAll('input[name="space"]')];
-const serviceSelect = document.querySelector('select[name="service"]');
+const spaceInput = document.querySelector('input[name="space"]');
+const serviceInput = document.querySelector('input[name="service"]');
+const requestedService = new URLSearchParams(window.location.search).get('service');
+if (serviceInput && requestedService) serviceInput.value = requestedService;
 const menuToggle = document.querySelector('.menu-toggle');
 const primaryNav = document.getElementById('primary-nav');
 menuToggle?.addEventListener('click', () => {
@@ -59,20 +87,27 @@ primaryNav?.querySelectorAll('a').forEach((link) => link.addEventListener('click
 }));
 document.querySelectorAll('[data-service]').forEach((tile) => {
   tile.addEventListener('click', () => {
-    if (serviceSelect) serviceSelect.value = tile.dataset.service;
+    if (serviceInput) serviceInput.value = tile.dataset.service;
   });
 });
 spaceOptions.forEach((card) => {
   card.addEventListener('click', () => {
     const value = card.dataset.space;
-    const matchingInput = spaceInputs.find((input) => input.value === value);
-    if (matchingInput) matchingInput.checked = true;
+    if (spaceInput) spaceInput.value = value;
     spaceOptions.forEach((item) => item.classList.toggle('selected', item === card));
     document.getElementById('inquiry').scrollIntoView({ behavior: 'smooth' });
   });
 });
 
 const inquiryForm = document.getElementById('inquiry-form');
+const quickContact = document.querySelector('.quick-contact');
+const inquirySection = document.getElementById('inquiry');
+if (quickContact && inquirySection && 'IntersectionObserver' in window) {
+  const contactObserver = new IntersectionObserver(([entry]) => {
+    quickContact.classList.toggle('is-inquiry-visible', entry.isIntersecting);
+  }, { threshold: 0.08 });
+  contactObserver.observe(inquirySection);
+}
 const responseFrame = document.createElement('iframe');
 responseFrame.name = 'caps-lead-response';
 responseFrame.title = '상담 접수 처리';
@@ -128,6 +163,7 @@ inquiryForm.addEventListener('submit', (event) => {
     space: String(formData.get('space') || ''),
     name: String(formData.get('name') || '').trim(),
     phone: String(formData.get('phone') || '').trim(),
+    preferredTime: String(formData.get('preferredTime') || ''),
     region: String(formData.get('region') || '').trim(),
     message: String(formData.get('message') || '').trim(),
     consent: Boolean(inquiryForm.querySelector('input[name="consent"]')?.checked)
