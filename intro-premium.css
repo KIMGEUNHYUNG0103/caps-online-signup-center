@@ -1,0 +1,49 @@
+body .intro.intro-premium{background:#f5f6f8;background-image:none;color:#162c45;padding-top:48px;padding-bottom:44px;border:0;scroll-margin-top:85px}
+body .intro-premium:before,body .intro-premium:after{display:none}
+.consult-editorial{display:grid;grid-template-columns:1.05fr 1fr;gap:60px;align-items:center}
+.consult-message{padding:8px 0}
+.consult-eyebrow{display:flex;align-items:center;gap:10px;color:#476181;font-size:12px;font-weight:600;letter-spacing:.04em;margin:0 0 20px}
+.consult-eyebrow>span{width:22px;height:2px;background:#125ab1}
+body .intro-premium h2{color:#14283f;font-size:clamp(27px,3vw,42px);font-weight:700;line-height:1.45;letter-spacing:-.055em;margin:0 0 22px;text-wrap:initial;word-break:keep-all}
+body .intro-premium h2 span{color:#1460b4}
+body .intro-premium .intro-copy{width:100%;max-width:440px;margin:0}
+body .intro-premium .intro-copy p{color:#627187;font-size:14px;line-height:1.95;font-weight:400;margin:0 0 24px}
+body .intro-premium .arrow-link{display:inline-flex;align-items:center;gap:34px;background:#104f9d;color:#fff;border:1px solid #104f9d;border-radius:7px;min-height:48px;padding:12px 20px;font-size:14px;font-weight:600;box-shadow:0 5px 12px #1b4b8112;transition:background .2s,transform .2s}
+body .intro-premium .arrow-link:hover{background:#0a3b79;transform:translateY(-2px)}
+body .intro-premium .arrow-link span{margin:0;display:flex}
+.security-plan{background:#102641;border:1px solid #233c59;border-radius:16px;overflow:hidden;box-shadow:0 18px 36px #17345312;position:relative}
+.plan-top{display:flex;align-items:center;justify-content:space-between;color:#d7e3f0;font-size:12px;padding:20px 24px;border-bottom:1px solid #ffffff12;letter-spacing:.015em}
+.plan-mark{color:#7899bf;font-size:21px;font-weight:300}
+.plan-drawing{display:block;width:100%;height:auto;max-height:265px;padding:6px 12px}
+.plan-links{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));padding:0 20px 20px;gap:8px}
+.plan-links a{display:flex;align-items:center;justify-content:space-between;gap:6px;padding:11px 12px;background:#1e3653;border:1px solid #39516c;border-radius:6px;color:#dce8f6;font-size:12px;transition:background .2s,border-color .2s}
+.plan-links a:hover{background:#2b4768;border-color:#7c9fc7}.plan-links .ui-icon{width:15px;height:15px}
+body .intro-premium .value-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin-top:28px;border:0}
+body .intro-premium .value-list article{display:grid;grid-template-columns:30px minmax(0,1fr);gap:15px;position:relative;align-items:start;padding:22px;background:#fff;border:1px solid #e0e5ec;border-radius:10px;min-height:0;box-shadow:0 2px 4px #213b5903}
+body .intro-premium .value-list article:before{display:none}
+body .intro-premium .value-list .value-index{font-size:12px;line-height:30px;color:#446c99;padding:0;width:30px;text-align:center;background:#edf3fa;border-radius:6px;font-weight:600;font-variant-numeric:tabular-nums}
+body .intro-premium .value-list h3{font-size:16px;line-height:1.65;font-weight:600;color:#253c57;margin:1px 0 7px;letter-spacing:-.035em}
+body .intro-premium .value-list p{font-size:13px;line-height:1.8;font-weight:400;color:#6a788b;margin:0;word-break:keep-all}
+body .intro-premium .value-symbol{display:none}
+.intro-premium a:focus-visible{outline:3px solid #7faeff;outline-offset:4px}
+@media(max-width:1000px){.consult-editorial{gap:30px}body .intro-premium h2{font-size:30px}body .intro-premium .value-list article{padding:18px;gap:10px;grid-template-columns:26px minmax(0,1fr)}body .intro-premium .value-list .value-index{width:26px;line-height:26px}body .intro-premium .value-list h3{font-size:15px}.plan-links{padding:0 14px 16px}.plan-links a{padding:10px 8px}}
+@media(max-width:720px){body .intro.intro-premium{padding:34px 20px}.consult-editorial{grid-template-columns:1fr;gap:26px}.consult-message{padding:0}.consult-eyebrow{margin-bottom:14px}body .intro-premium h2{font-size:clamp(26px,6.2vw,36px);margin-bottom:16px}body .intro-premium .intro-copy{max-width:100%}body .intro-premium .intro-copy p{margin-bottom:20px}.security-plan{border-radius:12px}.plan-top{padding:15px 18px}.plan-drawing{max-height:225px}.plan-links{padding:0 16px 16px}.plan-links a{padding:11px 10px}body .intro-premium .value-list{grid-template-columns:1fr;gap:10px;margin-top:18px}body .intro-premium .value-list article{padding:18px;grid-template-columns:30px minmax(0,1fr);gap:14px}body .intro-premium .value-list h3{font-size:16px;margin-top:0;margin-bottom:4px}body .intro-premium .value-list .value-index{width:30px;line-height:30px}}
+@media(prefers-reduced-motion:reduce){body .intro-premium .arrow-link,.plan-links a{transition:none}}
+body .intro-premium .intro-copy .arrow-link{color:#fff !important;}
+/* Camera and sensor illustration: deliberately slow, decorative motion. */
+.security-plan{background:linear-gradient(145deg,#142e49,#0b1e34);border-color:#344e68;box-shadow:0 16px 36px #122c4c19,inset 0 1px 0 #ffffff0a}
+.plan-top{border-bottom-color:#8cabc21c;color:#dbe7f2;padding:20px 24px}
+.plan-motion-label{display:inline-flex;align-items:center;gap:6px;font-size:10px;color:#8fa8bf;font-weight:400;letter-spacing:0}
+.plan-motion-label i{width:4px;height:4px;border-radius:50%;background:#81bacb}
+.plan-drawing{max-height:285px;padding:14px 12px 5px}
+.camera-sweep{transform-origin:150px 115px;animation:camera-sweep 9s ease-in-out infinite alternate}
+.camera-scan-line{transform-origin:150px 115px;animation:camera-scan 6s ease-in-out infinite alternate}
+.signal-ring{transform-box:fill-box;transform-origin:center;opacity:0;animation:security-signal 4.8s ease-out infinite}
+.ring-two{animation-delay:2.4s}
+.plan-links a{background:#ffffff06;border-color:#89a5be35;color:#dce8f2;border-radius:7px}
+.plan-links a:hover{background:#ffffff10;border-color:#9ebad070}
+@keyframes camera-sweep{from{transform:rotate(-9deg);opacity:.6}to{transform:rotate(10deg);opacity:1}}
+@keyframes camera-scan{from{transform:rotate(-17deg);opacity:.2}to{transform:rotate(20deg);opacity:.65}}
+@keyframes security-signal{0%{transform:scale(.5);opacity:0}20%{opacity:.65}85%,100%{transform:scale(2.1);opacity:0}}
+@media(max-width:720px){.plan-top{padding:16px}.plan-motion-label{font-size:9px}.plan-drawing{max-height:235px;padding:12px 5px 4px}}
+@media(prefers-reduced-motion:reduce){.camera-sweep,.camera-scan-line,.signal-ring{animation:none}.signal-ring{opacity:.3}}

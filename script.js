@@ -72,6 +72,8 @@ const spaceInput = document.querySelector('input[name="space"]');
 const serviceInput = document.querySelector('input[name="service"]');
 const requestedService = new URLSearchParams(window.location.search).get('service');
 if (serviceInput && requestedService) serviceInput.value = requestedService;
+const requestedSpace = new URLSearchParams(window.location.search).get('space');
+if (spaceInput && requestedSpace) spaceInput.value = requestedSpace;
 const menuToggle = document.querySelector('.menu-toggle');
 const primaryNav = document.getElementById('primary-nav');
 menuToggle?.addEventListener('click', () => {
@@ -155,11 +157,20 @@ inquiryForm.addEventListener('submit', (event) => {
   if (pendingLead) return;
   const submitButton = event.currentTarget.querySelector('[type="submit"]');
   const formData = new FormData(event.currentTarget);
-  const requestId = 'CAPS-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9); const selectedService = String(formData.get('service') || '').trim(); const acceptedServices = new Set(['', 'CCTV', '무인경비', '출입보안', '인터넷 가입']); const serviceForBridge = acceptedServices.has(selectedService) ? selectedService : ''; const customerMessage = String(formData.get('message') || '').trim(); const messageForBridge = serviceForBridge || !selectedService ? customerMessage : [`관심 서비스: ${selectedService}`, customerMessage].filter(Boolean).join(' | ');
+  const requestId = 'CAPS-' + Date.now().toString(36) + '-' + Math.random().toString(36).slice(2, 9);
+  const selectedService = String(formData.get('service') || '').trim();
+  const acceptedServices = new Set(['', 'CCTV', '무인경비', '출입보안', '인터넷 가입']);
+  const serviceForBridge = acceptedServices.has(selectedService) ? selectedService : '';
+  const customerMessage = String(formData.get('message') || '').trim();
+  const messageForBridge = serviceForBridge || !selectedService
+    ? customerMessage
+    : [`관심 서비스: ${selectedService}`, customerMessage].filter(Boolean).join('\n');
   const payload = {
     requestId,
     submittedAt: new Date().toISOString(),
     service: serviceForBridge,
+    // Space cards are optional in the inquiry form. Keep general inquiries
+    // compatible with the Apps Script bridge, which requires a non-empty space.
     space: String(formData.get('space') || '일반 상담'),
     name: String(formData.get('name') || '').trim(),
     phone: String(formData.get('phone') || '').trim(),
