@@ -133,15 +133,23 @@ window.addEventListener('message', (event) => {
     return;
   }
 
+  if (result.alertSent !== true) {
+    formStatus('상담 알림 전송을 확인하지 못했습니다. 중복 제출 전 전화상담으로 확인해 주세요.', true);
+    return;
+  }
   inquiryForm.reset();
   spaceOptions.forEach((item) => item.classList.remove('selected'));
-  formStatus(result.alertSent === false
-    ? '상담 내용은 저장됐지만 운영자 알림 전송에 문제가 있습니다. 다시 제출하지 않으셔도 됩니다.'
-    : '상담 요청이 접수되었습니다. 확인 후 연락드리겠습니다.', result.alertSent === false);
+  formStatus('상담예약이 완료되었습니다. 담당자가 확인 후 연락드리겠습니다.', false);
+  const completion = document.getElementById('form-status');
+  completion.classList.add('status-success');
+  completion.setAttribute('tabindex', '-1');
+  completion.focus({ preventScroll: true });
+  completion.scrollIntoView({ block: 'center', behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
 });
 
 function formStatus(message, attention) {
   const status = document.getElementById('form-status');
+  status.classList.remove('status-success');
   status.textContent = message;
   status.classList.toggle('status-attention', Boolean(attention));
 }
@@ -181,6 +189,7 @@ inquiryForm.addEventListener('submit', (event) => {
   };
   pendingLead = payload;
   submitButton.disabled = true;
+  status.classList.remove('status-success', 'status-attention');
   status.textContent = '상담 요청을 보내고 있습니다.';
   try {
     const endpoint = new URL(siteConfig.formEndpoint);

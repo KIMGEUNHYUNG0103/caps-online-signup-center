@@ -3,6 +3,6 @@ window.CAPS_SITE_CONFIG = Object.freeze({
   businessName: "",
   businessAddress: "",
   representativePhone: "1544-5288",
-  kakaoOpenChatUrl: "https://open.kakao.com/o/ssYnmhQi",
+  kakaoOpenChatUrl: "https://open.kakao.com/o/sRo6UKRi",
   formEndpoint: "https://script.google.com/macros/s/AKfycbz7sYmVYbWRiiBcvEZeRRSLVPvB_H2cw4pJ1-n4GxtYzOZTZBhgvrJIyHyzareH1LX_/exec"
 });
